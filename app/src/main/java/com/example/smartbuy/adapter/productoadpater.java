@@ -1,6 +1,7 @@
 package com.example.smartbuy.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.smartbuy.AgregarP;
 import com.example.smartbuy.R;
 import com.example.smartbuy.modelo.producto;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -22,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class productoadpater extends FirestoreRecyclerAdapter<producto,  productoadpater.ViewHolder> {
+
     private FirebaseFirestore  mfirestore = FirebaseFirestore.getInstance();
     Activity activity;
 
@@ -46,6 +49,15 @@ public class productoadpater extends FirestoreRecyclerAdapter<producto,  product
         holder.precioo.setText(producto.getPrecio());
         holder.cantidadd.setText(producto.getCantidad());
         holder.fechacc.setText(producto.getFechaC());
+        holder.btn_modificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    Intent i =new Intent(activity, AgregarP.class) ;
+                    i.putExtra("id_productos",id);
+                    activity.startActivity(i);
+            }
+        });
+
         holder.btn_eliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,7 +90,7 @@ public class productoadpater extends FirestoreRecyclerAdapter<producto,  product
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView nombree,precioo,cantidadd,fechacc;
-        ImageButton btn_eliminar;
+        ImageButton btn_eliminar,btn_modificar;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -87,6 +99,7 @@ public class productoadpater extends FirestoreRecyclerAdapter<producto,  product
             cantidadd = itemView.findViewById(R.id.cantidadp);
             fechacc = itemView.findViewById(R.id.fechacp);
             btn_eliminar = itemView.findViewById(R.id.btn_eliminarp);
+            btn_modificar= itemView.findViewById(R.id.btn_modificard);
         }
     }
 }
