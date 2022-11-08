@@ -3,6 +3,8 @@ package com.example.smartbuy.modelo;
 public class producto {
     private String nombre,fechaC,precio, cantidad;
 
+
+
     public producto(){
 
     }
@@ -12,6 +14,7 @@ public class producto {
         this.fechaC = fechaC;
         this.precio = precio;
         this.cantidad = cantidad;
+
     }
 
     public String getNombre() {
@@ -34,6 +37,7 @@ public class producto {
         return precio;
     }
 
+
     public void setPrecio(String precio) {
         this.precio = precio;
     }
@@ -45,4 +49,6 @@ public class producto {
     public void setCantidad(String cantidad) {
         this.cantidad = cantidad;
     }
+
+
 }

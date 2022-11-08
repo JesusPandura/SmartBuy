@@ -82,6 +82,8 @@ public class AgregarP extends AppCompatActivity {
                     }
                 }
 
+
+
                 private void modificarpro(String nombrea, String precioa, String cantidada, String fechaCa, String id) {
                     Map<String, Object> map = new HashMap<>();
                     map.put("nombre", nombrea);

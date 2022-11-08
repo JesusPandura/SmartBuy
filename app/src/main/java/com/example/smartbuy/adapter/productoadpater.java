@@ -46,9 +46,10 @@ public class productoadpater extends FirestoreRecyclerAdapter<producto,  product
         final String id = documentSnapshot.getId();
 
         holder.nombree.setText(producto.getNombre());
-        holder.precioo.setText(producto.getPrecio());
-        holder.cantidadd.setText(producto.getCantidad());
-        holder.fechacc.setText(producto.getFechaC());
+        holder.precioo.setText("Precio: "+producto.getPrecio());
+
+        holder.cantidadd.setText("Cantidad: "+producto.getCantidad());
+        holder.fechacc.setText("Fecha:"+ producto.getFechaC());
         holder.btn_mas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,9 +107,9 @@ public class productoadpater extends FirestoreRecyclerAdapter<producto,  product
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            nombree = itemView.findViewById(R.id.nombrep);
-            precioo = itemView.findViewById(R.id.preciop);
-            cantidadd = itemView.findViewById(R.id.cantidadp);
+            nombree = itemView.findViewById(R.id.correop);
+            precioo = itemView.findViewById(R.id.idpedido);
+            cantidadd = itemView.findViewById(R.id.correopedido);
             fechacc = itemView.findViewById(R.id.fechacp);
             btn_eliminar = itemView.findViewById(R.id.btn_eliminarp);
             btn_modificar= itemView.findViewById(R.id.btn_modificard);

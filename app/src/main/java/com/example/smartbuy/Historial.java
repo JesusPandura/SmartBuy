@@ -6,31 +6,32 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.smartbuy.adapter.productoadpater;
-import com.example.smartbuy.modelo.producto;
+import com.example.smartbuy.adapter.productoadpater5;
+import com.example.smartbuy.modelo.pedido;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-public class MostrarDatos extends AppCompatActivity {
+public class Historial extends AppCompatActivity {
+
 
     RecyclerView recy;
-    productoadpater mAdapter;
+    productoadpater5 mAdapter;
     FirebaseFirestore mfirestore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mostrar_datos);
-        recy =  findViewById(R.id.recyy);
+        setContentView(R.layout.activity_historial);
+        recy =  findViewById(R.id.eqeqç);
 
         recy.setLayoutManager(new LinearLayoutManager(this));
 
         mfirestore = FirebaseFirestore.getInstance();
-        Query query = mfirestore.collection("productos");
+        Query query = mfirestore.collection("pedidos");
 
-        FirestoreRecyclerOptions<producto> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<producto>().setQuery(query,producto.class).build();
+        FirestoreRecyclerOptions<pedido> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<pedido>().setQuery(query, pedido.class).build();
 
-        mAdapter = new  productoadpater(firestoreRecyclerOptions, this);
+        mAdapter = new productoadpater5(firestoreRecyclerOptions, this);
         mAdapter.notifyDataSetChanged();
         recy.setAdapter(mAdapter);
 

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Venta">
+
+    <LinearLayout
+        android:layout_width="352dp"
+        android:layout_height="686dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txtCosto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Total"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/txtcorreo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TextView" />
+
+        <EditText
+            android:id="@+id/contraseña_v"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="68dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Fecha"
+            android:textColor="#605C5C"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/fecha_v"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Fecha"
+            android:inputType="textPersonName"
+            android:textColorHint="#7A7777" />
+
+        <Button
+            android:id="@+id/btn_f"
+            android:layout_width="313dp"
+            android:layout_height="wrap_content"
+            android:text="Generar fecha" />
+
+        <Button
+            android:id="@+id/btn_venta"
+            android:layout_width="253dp"
+            android:layout_height="wrap_content"
+            android:text="comprar" />
+
+        <Button
+            android:id="@+id/btn_con"
+            android:layout_width="178dp"
+            android:layout_height="wrap_content"
+            android:text="Clientes de confianza" />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="138dp"
+            android:layout_height="wrap_content"
+            android:text="cancelar" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.example.smartbuy;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -17,9 +18,23 @@ import com.google.firebase.auth.FirebaseUser;
 public class IniciarsesionActivity extends AppCompatActivity {
 
 
-    private EditText correo;
+    public EditText correo;
+    public static String cc;
+
+
+
+    public String getCorreo () {
+       return cc;
+    }
+    public void setCorreo(String correo) {
+        this.cc = correo;
+    }
+
     private EditText contrasena;
     private FirebaseAuth mAuth;
+    public String guardado;
+    Button iniciar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +44,7 @@ public class IniciarsesionActivity extends AppCompatActivity {
 
         correo = findViewById(R.id.correo);
         contrasena = findViewById(R.id.contras);
+
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -43,14 +59,20 @@ public class IniciarsesionActivity extends AppCompatActivity {
     }
     public void iniciarsesion(View view){
 
+        setCorreo(correo.getText().toString());
         mAuth.signInWithEmailAndPassword(correo.getText().toString(), contrasena.getText().toString())
                 .addOnCompleteListener( new OnCompleteListener<AuthResult>(){
                     @Override
                     public void onComplete( Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
                             Toast.makeText(getApplicationContext(), "Conexion exitosa",Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
+
+                            Bundle enviaDatos = new Bundle();
+                            enviaDatos.putString("keyDatos",correo.getText().toString());
                             Intent i = new Intent(getApplicationContext(), Catalogo.class);
+                            i.putExtras(enviaDatos);
                             startActivity(i);
 
                         } else {
