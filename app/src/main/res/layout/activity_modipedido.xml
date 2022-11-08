@@ -64,6 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:enabled="false"
             android:inputType="textPersonName"
             android:text="Name" />
 
@@ -71,6 +72,19 @@
             android:id="@+id/modificarP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Update" />
+            android:text="Si/Pago" />
+
+        <Button
+            android:id="@+id/modificarP2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Listo" />
+
+        <Button
+            android:id="@+id/modificarP4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="cancelar" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,11 +1,15 @@
 package com.example.smartbuy;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class RegistrarActivity extends AppCompatActivity {
 
@@ -34,7 +39,7 @@ public class RegistrarActivity extends AppCompatActivity {
     private EditText nombre;
     CheckBox admin, cliente;
     private FirebaseFirestore mfirestore;
-
+    TextView atoz, AtoZ, num, charcount, colorsit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +51,19 @@ public class RegistrarActivity extends AppCompatActivity {
 
         correo = findViewById(R.id.correo);
         admin = findViewById(R.id.btn_ad);
-        cliente = findViewById(R.id.btn_cliente);
+
         nombre = findViewById(R.id.nombre_r);
         btn_registrar = findViewById(R.id.button);
+
+
+        atoz = findViewById(R.id.qw);
+        AtoZ = findViewById(R.id.qwe);
+        num = findViewById(R.id.qwer);
+        charcount = findViewById(R.id.qwert);
+        colorsit = findViewById(R.id.colorsito);
+        colorsit.setTextColor(Color.GREEN);
+
+
 
         if(id==null || id== ""){
             btn_registrar.setOnClickListener(new View.OnClickListener() {
@@ -60,9 +75,24 @@ public class RegistrarActivity extends AppCompatActivity {
                     if(nombrea.isEmpty() && correoa.isEmpty()){
                         Toast.makeText(RegistrarActivity.this, "Campos obligatorios", Toast.LENGTH_SHORT).show();
                     }else{
+                        if((validateminusculas(nombrea)==true && validatemayusculas(nombrea)==true) || validateminusculas(nombrea)==true || validatemayusculas(nombrea)==true ){
 
-                        postre(nombrea,correoa);
-                        registrarusuario( view);
+                            if(charcount.getTextColors() == colorsit.getTextColors() && AtoZ.getTextColors() == colorsit.getTextColors() && atoz.getTextColors() == colorsit.getTextColors() && num.getTextColors() == colorsit.getTextColors()){
+                                postre(nombrea,correoa);
+                                registrarusuario(view);
+                            }else{
+                                Toast.makeText(RegistrarActivity.this, "Mal formato", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }else{
+
+
+                            Toast.makeText(RegistrarActivity.this, "Escriba bien el nombre", Toast.LENGTH_SHORT).show();
+                        }
+
+
+
+
                     }
                 }
             });
@@ -82,8 +112,8 @@ public class RegistrarActivity extends AppCompatActivity {
         mfirestore.collection("usuario").add(map).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
             @Override
             public void onComplete(@NonNull Task<DocumentReference> task) {
-                Toast.makeText(RegistrarActivity.this, "Creado correctamente", Toast.LENGTH_SHORT).show();
-                finish();
+                Toast.makeText(RegistrarActivity.this, "Smart buy", Toast.LENGTH_SHORT).show();
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -106,9 +136,26 @@ public class RegistrarActivity extends AppCompatActivity {
         contrasena = findViewById(R.id.contras);
         contrasenaConfirmacion = findViewById(R.id.Confirmacion_contrase);
         admin = findViewById(R.id.btn_ad);
-        cliente = findViewById(R.id.btn_cliente);
+
         nombre = findViewById(R.id.nombre_r);
 
+        contrasena.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String password = contrasena.getText().toString();
+                validatepass(password);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
 
     }
@@ -129,7 +176,7 @@ public class RegistrarActivity extends AppCompatActivity {
 
                             } else {
 
-                                Toast.makeText(getApplicationContext(), "Correo o contraseña no validos",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegistrarActivity.this, "Correo o contraseña no validos",Toast.LENGTH_SHORT).show();
 
                             }
                         }
@@ -139,13 +186,77 @@ public class RegistrarActivity extends AppCompatActivity {
 
             }else {
 
-                Toast.makeText(this, "Las contraseña no es valida/o no coinciden",Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegistrarActivity.this, "Las contraseña no es valida/o no coinciden",Toast.LENGTH_SHORT).show();
 
              }
 
 
         }
+    public void validatepass(String password) {
 
+        // check for pattern
+        Pattern uppercase = Pattern.compile("[A-Z]");
+        Pattern lowercase = Pattern.compile("[a-z]");
+        Pattern digit = Pattern.compile("[0-9]");
+
+        // if lowercase character is not present
+        if (!lowercase.matcher(password).find()) {
+            atoz.setTextColor(Color.RED);
+        } else {
+            // if lowercase character is  present
+            atoz.setTextColor(Color.GREEN);
+        }
+
+        // if uppercase character is not present
+        if (!uppercase.matcher(password).find()) {
+            AtoZ.setTextColor(Color.RED);
+        } else {
+            // if uppercase character is  present
+            AtoZ.setTextColor(Color.GREEN);
+        }
+        // if digit is not present
+        if (!digit.matcher(password).find()) {
+            num.setTextColor(Color.RED);
+        } else {
+            // if digit is present
+            num.setTextColor(Color.GREEN);
+        }
+        // if password length is less than 8
+        if (password.length() < 8) {
+            charcount.setTextColor(Color.RED);
+        } else {
+            charcount.setTextColor(Color.GREEN);
+        }
+
+
+    }
+    public static boolean validateminusculas(String password) {
+        Pattern lowercase = Pattern.compile("[a-z]");
+
+        if (!lowercase.matcher(password).find()) {
+            return false;
+        } else {
+            // if lowercase character is  present
+            return true;
+
+        }
+
+
+    }
+
+    public static boolean validatemayusculas(String password) {
+        Pattern lowercase = Pattern.compile("[A-Z]");
+
+        if (!lowercase.matcher(password).find()) {
+            return false;
+        } else {
+            // if lowercase character is  present
+            return true;
+
+        }
+
+
+    }
 
 
         public void validar (){

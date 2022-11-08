@@ -59,7 +59,6 @@
             android:id="@+id/iniciar_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="iniciarsesion"
             android:text="Conectarse"
             tools:text="@string/btn_iniciar" />
 

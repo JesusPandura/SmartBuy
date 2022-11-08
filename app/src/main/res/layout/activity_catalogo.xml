@@ -9,8 +9,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="388dp"
-        android:layout_height="708dp"
+        android:layout_width="389dp"
+        android:layout_height="656dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
@@ -18,10 +18,10 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.087">
+        app:layout_constraintVertical_bias="0.926">
 
         <TextView
             android:id="@+id/usu"
@@ -30,13 +30,6 @@
             android:gravity="center"
             android:textColor="#050505"
             android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="375dp"
-            android:layout_height="wrap_content"
-            android:onClick="Herramientas"
-            android:text="Administrador" />
 
         <Button
             android:id="@+id/btn_act"
@@ -56,6 +49,27 @@
             android:layout_height="wrap_content"
             android:text="Historial" />
 
+        <Button
+            android:id="@+id/btn_ads4"
+            android:layout_width="375dp"
+            android:layout_height="wrap_content"
+            android:text="Cerrar sesión " />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="396dp"
+        android:layout_height="55dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="7dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <ImageButton
+            android:id="@+id/button2"
+            android:layout_width="97dp"
+            android:layout_height="wrap_content"
+            android:onClick="Herramientas"
+            app:srcCompat="@drawable/ic_baseline_admin_panel_settings_24" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

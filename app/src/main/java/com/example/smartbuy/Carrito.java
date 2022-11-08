@@ -23,6 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class Carrito extends AppCompatActivity {
 
@@ -39,7 +40,7 @@ public class Carrito extends AppCompatActivity {
     private int año;
     private int hora;
     private int minuto;
-
+    private static String Guard;
 
     static MostarDatos2 u = new MostarDatos2();
     static final String inf = u.cc;
@@ -108,29 +109,44 @@ public class Carrito extends AppCompatActivity {
 
         }else{
             getproducto(id);
+
             carrito.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Pattern digit = Pattern.compile("[0-9]");
+                    Pattern uppercase = Pattern.compile("[A-Z]");
+                    Pattern lowercase = Pattern.compile("[a-z]");
                     String nombrea = producto.getText().toString().trim();
                     String precioa = precio.getText().toString().trim();
                     String cantidada = cantidad.getText().toString().trim() ;
                     String usuarioo = usuario.getText().toString();
                     String fechaaa = fechaa.getText().toString();
 
-                    if((nombrea.isEmpty() && precioa.isEmpty()&& usuarioo.isEmpty() && cantidada.isEmpty()&&fechaaa.isEmpty()) || (Double.parseDouble(cantidada) > cantii)){
-                        Toast.makeText(Carrito.this, "Campos obligatorios o stock superado", Toast.LENGTH_SHORT).show();
+                    if(isNumericc(precioa)==true && isNumericc(cantidada)==true ){
+                        if(( cantidada.isEmpty())  || (Double.parseDouble(cantidada) > cantii) || (fechaaa.isEmpty()) || (cantidada.isEmpty() && fechaaa.isEmpty() )){
+                            Toast.makeText(Carrito.this, "Campos obligatorios/stock superado/falta generar fecha", Toast.LENGTH_SHORT).show();
+                        }else{
+                            if(Double.parseDouble(cantidada) == 0.0 ) {
+                                Toast.makeText(Carrito.this, "No hay Stock", Toast.LENGTH_SHORT).show();
+                            }else{
+                                cantidad( cantidada,  id, Guard);
+
+                                Carritopro(nombrea,precioa,cantidada,usuarioo,fechaaa);
+
+                                Double lola =  (Double.parseDouble(precio.getText().toString()))*(Double.parseDouble(cantidad.getText().toString()));
+                                setCont(lola);
+                            }
+
+
+                        }
+
                     }else{
-
-
-                        Carritopro(nombrea,precioa,cantidada,usuarioo,fechaaa);
-
-                        Double lola =  (Double.parseDouble(precio.getText().toString()))*(Double.parseDouble(cantidad.getText().toString()));
-                        setCont(lola);
-
-
-
+                        Toast.makeText(Carrito.this, "Coloque un numero", Toast.LENGTH_SHORT).show();
 
                     }
+
+
+
                 }
 
 
@@ -157,6 +173,30 @@ public class Carrito extends AppCompatActivity {
                     });
 
                 }
+
+                private void cantidad( String cantidada, String id, String Guard ){
+
+
+                      Double  cantidadN =   Double.parseDouble(Guard) - Double.parseDouble(cantidada);
+
+                      String canti= cantidadN.toString();
+
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("cantidad", canti);
+                    mfirestore.collection("productos").document(id).update(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(Carrito.this, "Operacion exitosa", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(Carrito.this, "Operacion erronea", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                }
             });
 
 
@@ -177,6 +217,8 @@ public class Carrito extends AppCompatActivity {
                 precio.setText(preciopro);
                 cantidad.setText(cantidadpro);
                 cantii = Double.parseDouble(cantidadpro);
+                Guard = cantidadpro;
+
 
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -226,5 +268,27 @@ public class Carrito extends AppCompatActivity {
         onBackPressed();
         return  false;
     }
+
+    private static  boolean isNumericc(String cadena){
+        try {
+            Double.parseDouble(cadena);
+            return true;
+
+        } catch (NumberFormatException nfe){
+            return false;
+        }
+    }
+
+    private static boolean isString(String cadena){
+        try {
+            String.valueOf(cadena);
+            return true;
+
+        } catch (NumberFormatException nfe){
+            return false;
+        }
+    }
+
+
 
 }

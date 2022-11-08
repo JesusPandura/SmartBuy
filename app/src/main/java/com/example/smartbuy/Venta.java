@@ -1,6 +1,7 @@
 package com.example.smartbuy;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,6 +42,7 @@ public class Venta extends AppCompatActivity {
     private EditText contraseña;
     private FirebaseFirestore mfirestore;
     static int idpedido = 0;
+    static String velo;
 
 
     @Override
@@ -52,7 +55,7 @@ public class Venta extends AppCompatActivity {
         Bundle recibeDDatos = getIntent().getExtras();
         String info = recibeDDatos.getString("keyDatos");
         correo.setText(info);
-
+        velo = info;
         total = findViewById(R.id.txtCosto);
 
         getCont();
@@ -61,9 +64,13 @@ public class Venta extends AppCompatActivity {
         fecha =  findViewById(R.id.btn_f);
 
         fecha.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 muestrafecha();
+
+
+
             }
         });
         contraseña = findViewById(R.id.contraseña_v);
@@ -94,7 +101,7 @@ public class Venta extends AppCompatActivity {
 
                 if((fechaCa.isEmpty()  &&  contra.isEmpty()) || (fechaCa.isEmpty()) || (contra.isEmpty())){
 
-                    Toast.makeText(Venta.this, "Campos obligatorios", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Venta.this, "Campos obligatorios y/o falta generar fecha", Toast.LENGTH_SHORT).show();
 
                 }else{
 
@@ -108,12 +115,41 @@ public class Venta extends AppCompatActivity {
                                         Toast.makeText(Venta.this, "Conexion exitosa",Toast.LENGTH_SHORT).show();
                                         FirebaseUser user = mAuth.getCurrentUser();
 
-                                        int padrino = 1;
-                                        idpedido = idpedido + padrino;
-                                        ventaa(idpedido,correoa,total,fechaCa);
-                                        ceroCont();
-                                        Intent i = new Intent(getApplicationContext(), paypal.class);
-                                        startActivity(i);
+                                        AlertDialog.Builder alerta = new AlertDialog.Builder(Venta.this);
+                                        alerta.setMessage("Esta seguro que quiere proceder con su compra?").setCancelable(true)
+                                                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                            String totaliti = total;
+
+                                                if ( Double.parseDouble(totaliti) == 0.0){
+
+                                                    Toast.makeText(Venta.this, "Carrito de compra vacio",Toast.LENGTH_SHORT).show();
+                                                    dialogInterface.cancel();
+
+                                                }else{
+                                                    int padrino = 1;
+                                                    idpedido = idpedido + padrino;
+                                                    ventaaa(idpedido,  correoa,  fechaCa, total);
+                                                    ceroCont();
+
+                                                    Intent x = new Intent(getApplicationContext(), paypal.class);
+                                                    startActivity(x);
+                                                }
+
+
+                                            }
+                                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                                dialogInterface.cancel();
+
+                                            }
+                                        });
+                                        AlertDialog qqq = alerta.create();;
+                                        qqq.setTitle("Confirmación");
+                                        qqq.show();
 
                                     } else {
 
@@ -159,12 +195,42 @@ public class Venta extends AppCompatActivity {
                                         Toast.makeText(Venta.this, "Conexion exitosa",Toast.LENGTH_SHORT).show();
                                         FirebaseUser user = mAuth.getCurrentUser();
 
-                                        int padrino = 1;
-                                        idpedido = idpedido + padrino;
-                                        ventaaa(idpedido,  correoa,  fechaCa, total);
-                                        ceroCont();
-                                        Intent i = new Intent(getApplicationContext(), paypal.class);
-                                        startActivity(i);
+                                        AlertDialog.Builder alerta = new AlertDialog.Builder(Venta.this);
+                                        alerta.setMessage("Esta seguro que quiere proceder con su compra?").setCancelable(true)
+                                                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                        String totaliti = total;
+
+                                                        if ( Double.parseDouble(totaliti) == 0.0){
+
+                                                            Toast.makeText(Venta.this, "Carrito de compra vacio",Toast.LENGTH_SHORT).show();
+                                                            dialogInterface.cancel();
+
+                                                        }else{
+                                                            int padrino = 1;
+                                                            idpedido = idpedido + padrino;
+                                                            ventaaa(idpedido,  correoa,  fechaCa, total);
+                                                            ceroCont();
+
+                                                            Intent x = new Intent(getApplicationContext(), paypal.class);
+                                                            startActivity(x);
+                                                        }
+
+
+                                                    }
+                                                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                                        dialogInterface.cancel();
+
+                                                    }
+                                                });
+                                        AlertDialog qqq = alerta.create();;
+                                        qqq.setTitle("Confirmación");
+                                        qqq.show();
+
                                     } else {
 
                                         Toast.makeText(getApplicationContext(), "Correo o contraseña no validos",Toast.LENGTH_SHORT).show();
@@ -276,5 +342,6 @@ public class Venta extends AppCompatActivity {
         onBackPressed();
         return  false;
     }
+
 }
 

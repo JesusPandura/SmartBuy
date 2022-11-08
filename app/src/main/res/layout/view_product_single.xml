@@ -56,14 +56,6 @@
                 android:layout_weight="1"
                 app:srcCompat="@drawable/ic_baseline_edit_24" />
 
-            <ImageButton
-                android:id="@+id/btn_mas"
-                android:layout_width="31dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="#009688"
-                app:srcCompat="@drawable/ic_baseline_add_24" />
-
         </LinearLayout>
 
         <TextView

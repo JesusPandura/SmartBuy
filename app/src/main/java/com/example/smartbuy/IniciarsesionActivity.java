@@ -1,6 +1,8 @@
 package com.example.smartbuy;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,7 +23,7 @@ public class IniciarsesionActivity extends AppCompatActivity {
     public EditText correo;
     public static String cc;
 
-
+    Carrito ewe = new Carrito();
 
     public String getCorreo () {
        return cc;
@@ -49,7 +51,27 @@ public class IniciarsesionActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-    }
+        iniciar = findViewById(R.id.iniciar_btn);
+
+        iniciar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nombrea = correo.getText().toString().trim();
+                String precioa = contrasena.getText().toString().trim();
+                if((nombrea.isEmpty() && precioa.isEmpty())||(precioa.isEmpty())||(nombrea.isEmpty()) ){
+                    Toast.makeText(IniciarsesionActivity.this, "Campos obligatorios", Toast.LENGTH_SHORT).show();
+                }else{
+
+
+                    iniciarsesion(nombrea, precioa);
+                    ceroCont();
+                }
+            }
+        });
+
+        }
+
+
 
     public void onStart() {
         super.onStart();
@@ -57,10 +79,10 @@ public class IniciarsesionActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         //updateUI(currentUser);
     }
-    public void iniciarsesion(View view){
+    public void iniciarsesion(String a, String b){
 
-        setCorreo(correo.getText().toString());
-        mAuth.signInWithEmailAndPassword(correo.getText().toString(), contrasena.getText().toString())
+        setCorreo(a);
+        mAuth.signInWithEmailAndPassword(a, b)
                 .addOnCompleteListener( new OnCompleteListener<AuthResult>(){
                     @Override
                     public void onComplete( Task<AuthResult> task) {
@@ -70,7 +92,7 @@ public class IniciarsesionActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
 
                             Bundle enviaDatos = new Bundle();
-                            enviaDatos.putString("keyDatos",correo.getText().toString());
+                            enviaDatos.putString("keyDatos",a);
                             Intent i = new Intent(getApplicationContext(), Catalogo.class);
                             i.putExtras(enviaDatos);
                             startActivity(i);
@@ -85,4 +107,16 @@ public class IniciarsesionActivity extends AppCompatActivity {
 
                 });
     }
+    public void ceroCont() {
+        SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
+
+        Double cont =  0.0;
+
+        String zz = cont.toString();
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("cont",zz);
+        editor.commit();
+
+    }
+
 }

@@ -21,13 +21,19 @@ public class Historial extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Bundle recibeDDatos = getIntent().getExtras();
+        String info = recibeDDatos.getString("keyDatos");
+
+
         setContentView(R.layout.activity_historial);
+
         recy =  findViewById(R.id.eqeqç);
 
         recy.setLayoutManager(new LinearLayoutManager(this));
 
         mfirestore = FirebaseFirestore.getInstance();
-        Query query = mfirestore.collection("pedidos");
+        Query query = mfirestore.collection("pedidos").whereEqualTo("correo",info);
 
         FirestoreRecyclerOptions<pedido> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<pedido>().setQuery(query, pedido.class).build();
 

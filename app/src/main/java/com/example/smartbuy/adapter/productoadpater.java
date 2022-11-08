@@ -50,15 +50,7 @@ public class productoadpater extends FirestoreRecyclerAdapter<producto,  product
 
         holder.cantidadd.setText("Cantidad: "+producto.getCantidad());
         holder.fechacc.setText("Fecha:"+ producto.getFechaC());
-        holder.btn_mas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i =new Intent(activity, AgregarP.class) ;
-                activity.startActivity(i);
-            }
 
-
-        });
 
         holder.btn_modificar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +105,7 @@ public class productoadpater extends FirestoreRecyclerAdapter<producto,  product
             fechacc = itemView.findViewById(R.id.fechacp);
             btn_eliminar = itemView.findViewById(R.id.btn_eliminarp);
             btn_modificar= itemView.findViewById(R.id.btn_modificard);
-            btn_mas= itemView.findViewById(R.id.btn_mas);
+
         }
     }
 }

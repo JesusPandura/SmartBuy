@@ -80,6 +80,7 @@
             android:layout_width="324dp"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:enabled="false"
             android:hint="fecha"
             android:inputType="textPersonName" />
 

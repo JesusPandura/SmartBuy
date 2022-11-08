@@ -1,6 +1,9 @@
 package com.example.smartbuy;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,6 +20,7 @@ public class MostrarDatos extends AppCompatActivity {
     RecyclerView recy;
     productoadpater mAdapter;
     FirebaseFirestore mfirestore;
+    ImageButton btn_mas;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +37,9 @@ public class MostrarDatos extends AppCompatActivity {
         mAdapter = new  productoadpater(firestoreRecyclerOptions, this);
         mAdapter.notifyDataSetChanged();
         recy.setAdapter(mAdapter);
+
+        btn_mas = findViewById(R.id.btn_mas4);
+        btn_mas.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View view) { startActivity(new Intent(MostrarDatos.this, AgregarP.class)); } });
 
     }
 

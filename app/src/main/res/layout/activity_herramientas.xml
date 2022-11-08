@@ -21,7 +21,19 @@
             android:id="@+id/btnp_a"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Herramientas" />
+            android:text="Productos" />
+
+        <Button
+            android:id="@+id/btn_pedidos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pedidos" />
+
+        <Button
+            android:id="@+id/btn_vv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ventas" />
 
         <Button
             android:id="@+id/btn_pedidos"

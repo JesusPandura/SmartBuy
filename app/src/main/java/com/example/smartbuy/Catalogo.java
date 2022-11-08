@@ -5,13 +5,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Catalogo extends AppCompatActivity {
 
-    Button mostrar,venta,historial;
+    Button mostrar,venta,historial,cerrar;
     public TextView usuarioo;
+    public static String coco;
 
 
 
@@ -26,8 +28,10 @@ public class Catalogo extends AppCompatActivity {
         Bundle recibeDatos = getIntent().getExtras();
         String info = recibeDatos.getString("keyDatos");
         usuarioo.setText(info);
+        coco = info;
 
         mostrar = findViewById(R.id.btn_act);
+
 
         mostrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,12 +65,23 @@ public class Catalogo extends AppCompatActivity {
         historial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Bundle enviaDDatos = new Bundle();
+                enviaDDatos.putString("keyDatos",info.toString());
                 Intent i = new Intent(getApplicationContext(), Historial.class);
+                i.putExtras(enviaDDatos);
                 startActivity(i);
             }
         });
 
-
+        cerrar = findViewById(R.id.btn_ads4);
+        cerrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Catalogo.this, MainActivity.class);
+                startActivity(i);
+                Toast.makeText(Catalogo.this, "Exito", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
