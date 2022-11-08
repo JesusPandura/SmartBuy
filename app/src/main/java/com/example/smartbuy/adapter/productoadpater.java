@@ -49,6 +49,16 @@ public class productoadpater extends FirestoreRecyclerAdapter<producto,  product
         holder.precioo.setText(producto.getPrecio());
         holder.cantidadd.setText(producto.getCantidad());
         holder.fechacc.setText(producto.getFechaC());
+        holder.btn_mas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i =new Intent(activity, AgregarP.class) ;
+                activity.startActivity(i);
+            }
+
+
+        });
+
         holder.btn_modificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,6 +75,8 @@ public class productoadpater extends FirestoreRecyclerAdapter<producto,  product
             }
         });
     }
+
+
 
     private void deleteproducto(String id) {
         mfirestore.collection("productos").document(id).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -90,7 +102,7 @@ public class productoadpater extends FirestoreRecyclerAdapter<producto,  product
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView nombree,precioo,cantidadd,fechacc;
-        ImageButton btn_eliminar,btn_modificar;
+        ImageButton btn_eliminar,btn_modificar,btn_mas;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -100,6 +112,7 @@ public class productoadpater extends FirestoreRecyclerAdapter<producto,  product
             fechacc = itemView.findViewById(R.id.fechacp);
             btn_eliminar = itemView.findViewById(R.id.btn_eliminarp);
             btn_modificar= itemView.findViewById(R.id.btn_modificard);
+            btn_mas= itemView.findViewById(R.id.btn_mas);
         }
     }
 }

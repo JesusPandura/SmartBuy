@@ -16,17 +16,20 @@ public class Herramientas extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_herramientas);
+        mostrar = findViewById(R.id.btnp_a);
 
+        mostrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Herramientas.this, MostrarDatos.class));
+            }
+        });
 
 
 
     }
 
-    public void agregar(View view){
-        Intent i = new Intent(this, AgregarP.class);
-        startActivity(i);
 
-    }
 
 
 }

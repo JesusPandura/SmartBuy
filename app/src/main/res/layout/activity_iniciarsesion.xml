@@ -33,17 +33,27 @@
             android:id="@+id/correo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#4E4C4C"
             android:ems="10"
             android:hint="Indique su correo electronico"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor="#040303"
+            android:textColorHighlight="#040303"
+            android:textColorHint="#171616"
+            android:textColorLink="#040303" />
 
         <EditText
             android:id="@+id/contras"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#4E4C4C"
             android:ems="10"
             android:hint="contraseña"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="#040303"
+            android:textColorHighlight="#040303"
+            android:textColorHint="#171616"
+            android:textColorLink="#040303" />
 
         <Button
             android:id="@+id/iniciar_btn"

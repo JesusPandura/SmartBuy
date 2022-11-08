@@ -20,7 +20,7 @@ public class Catalogo extends AppCompatActivity {
         mostrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Catalogo.this, MostrarDatos.class));
+                startActivity(new Intent(Catalogo.this, MostarDatos2.class));
             }
         });
     }
@@ -28,7 +28,7 @@ public class Catalogo extends AppCompatActivity {
 
 
     public void Herramientas(View view){
-        Intent i = new Intent(this, Herramientas.class);
+        Intent i = new Intent(this, AdminC.class);
         startActivity(i);
 
     }

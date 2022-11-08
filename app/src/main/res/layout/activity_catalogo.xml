@@ -13,6 +13,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,22 +24,16 @@
 
         <Button
             android:id="@+id/button2"
-            android:layout_width="match_parent"
+            android:layout_width="375dp"
             android:layout_height="wrap_content"
             android:onClick="Herramientas"
-            android:text="Herramientas" />
+            android:text="Administrador" />
 
         <Button
             android:id="@+id/btn_act"
-            android:layout_width="match_parent"
+            android:layout_width="375dp"
             android:layout_height="wrap_content"
             android:text="Mostrar PRODUCTOS" />
-
-        <Button
-            android:id="@+id/btn3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button" />
 
     </LinearLayout>
 

@@ -21,20 +21,7 @@
             android:id="@+id/btnp_a"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="agregar"
-            android:text="Agregar" />
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="eliminar" />
-
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="modificar" />
+            android:text="Herramientas" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
