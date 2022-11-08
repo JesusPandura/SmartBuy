@@ -6,6 +6,7 @@
     <string name="btn_registrar">registrar</string>
     <string name="btn_iniciar">Conectarse</string>
     <string name="btn_registro">Registrarse</string>
+    <string name="enter_how_much_cookies_you_want">Enter How Much Cookies You Want</string>
 
 
 </resources>

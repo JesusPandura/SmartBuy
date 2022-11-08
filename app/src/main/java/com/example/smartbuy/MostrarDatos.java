@@ -30,7 +30,7 @@ public class MostrarDatos extends AppCompatActivity {
 
         FirestoreRecyclerOptions<producto> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<producto>().setQuery(query,producto.class).build();
 
-        mAdapter = new  productoadpater(firestoreRecyclerOptions);
+        mAdapter = new  productoadpater(firestoreRecyclerOptions, this);
         mAdapter.notifyDataSetChanged();
         recy.setAdapter(mAdapter);
 
