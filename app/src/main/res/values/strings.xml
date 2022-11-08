@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Smart Buy</string>
+
+
+    <string name="btn_iniciarsesion">iniciar sesion</string>
+    <string name="btn_registrar">registrar</string>
+    <string name="btn_iniciar">Conectarse</string>
+    <string name="btn_registro">Registrarse</string>
+
+
+</resources>

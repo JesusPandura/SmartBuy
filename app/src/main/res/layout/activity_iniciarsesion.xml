@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:backgroundTint="@color/white"
+    android:foregroundTint="#FBFBFB"
+    tools:context=".IniciarsesionActivity">
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="267dp"
+        android:layout_height="367dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/images3"
+        tools:layout_editor_absoluteY="-29dp" />
+
+    <LinearLayout
+        android:layout_width="334dp"
+        android:layout_height="610dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.826">
+
+        <EditText
+            android:id="@+id/correo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Indique su correo electronico"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/contras"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="contraseña"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/iniciar_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="iniciarsesion"
+            android:text="Conectarse"
+            tools:text="@string/btn_iniciar" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

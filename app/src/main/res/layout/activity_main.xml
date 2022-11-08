@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FBFAFA"
+    android:backgroundTint="#F1EEEE"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/MainL"
+        android:layout_width="364dp"
+        android:layout_height="630dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.892">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="Smart Buy"
+            android:textAlignment="center"
+            android:textColor="#673AB7"
+            android:textColorHighlight="@color/purple_200"
+            android:textColorLink="@color/purple_200"
+            android:textIsSelectable="false"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/btn_ini"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="iniciar"
+            android:text="@string/btn_iniciarsesion"
+            app:iconTint="#3F51B5" />
+
+        <Button
+            android:id="@+id/btn_r"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="registrar"
+            android:text="Registrar"
+            app:iconTint="#3F51B5"
+            tools:text="@string/btn_registrar" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="354dp"
+        android:layout_height="335dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.04"
+        app:srcCompat="@drawable/maxresdefault" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
