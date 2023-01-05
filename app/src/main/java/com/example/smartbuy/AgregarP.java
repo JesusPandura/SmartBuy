@@ -96,10 +96,16 @@ public class AgregarP extends AppCompatActivity {
                             if(dateValidator(fechaCa) == true){
 
                                 if((validateminusculas(nombrea)==true && validatemayusculas(nombrea)==true) || validateminusculas(nombrea)==true || validatemayusculas(nombrea)==true ){
+                                    if((Double.parseDouble(cantidada)== 0.0 && Double.parseDouble(precioa)== 0.0) ||(Double.parseDouble(cantidada)== 0.0) || Double.parseDouble(precioa)== 0.0 ){
+                                        Toast.makeText(AgregarP.this, "Cantidad o precio 0", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else {
+                                        postpro( nombrea,  precioa, cantidada,  fechaCa);
+                                        createNotificationChannel();
+                                        createNotificationAP();
 
-                                    postpro( nombrea,  precioa, cantidada,  fechaCa);
-                                    createNotificationChannel();
-                                    createNotificationAP();
+                                    }
+
 
                                 }else{
 
@@ -145,10 +151,15 @@ public class AgregarP extends AppCompatActivity {
                             if(dateValidator(fechaCa) == true){
 
                                 if((validateminusculas(nombrea)==true && validatemayusculas(nombrea)==true) || validateminusculas(nombrea)==true || validatemayusculas(nombrea)==true ){
+                                    if((Double.parseDouble(cantidada)== 0.0 && Double.parseDouble(precioa)== 0.0) ||(Double.parseDouble(cantidada)== 0.0) || Double.parseDouble(precioa)== 0.0 ){
+                                        Toast.makeText(AgregarP.this, "Cantidad o precio 0", Toast.LENGTH_SHORT).show();
+                                    }
+                                      else {
+                                        modificarpro(nombrea,precioa,cantidada,fechaCa,id);
+                                        createNotificationChannel();
+                                        createNotificationMP();
+                                    }
 
-                                    modificarpro(nombrea,precioa,cantidada,fechaCa,id);
-                                    createNotificationChannel();
-                                    createNotificationMP();
                                 }else{
 
 

@@ -35,17 +35,5 @@
             android:layout_height="wrap_content"
             android:text="ventas" />
 
-        <Button
-            android:id="@+id/btn_pedidos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Pedidos" />
-
-        <Button
-            android:id="@+id/btn_vv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ventas" />
-
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
